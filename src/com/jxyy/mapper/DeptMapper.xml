@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.jxyy.mapper.DeptMapper">
+	
+	<insert id="insertDept" parameterType="com.jxyy.pojo.Dept" >
+		<!-- 
+			parameterType是对象，#{}里面必须是对象的属性名
+		 -->
+		insert into dept(deptno,dname,loc) values(#{deptno},#{dname},#{loc})
+	</insert>
+	
+	<update id="updateDept" parameterType="com.jxyy.pojo.Dept">
+		update dept set loc=#{loc} where deptno = #{deptno}
+	</update>
+	
+	<delete id="deleteDeptByDeptno" parameterType="int">
+		delete from dept where deptno=#{id}
+	</delete>
+	
+	<!-- 如果返回的是一个对象的集合，resultType写集合里面对象的类路径List<Dept> -->
+	<select id="selectDepts" resultType="com.jxyy.pojo.Dept">
+		select * from dept
+	</select>
+	
+</mapper>
